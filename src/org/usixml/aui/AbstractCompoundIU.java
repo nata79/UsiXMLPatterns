@@ -1,6 +1,6 @@
 package org.usixml.aui;
 
-import java.util.Set;
+import java.util.List;
 import org.usixml.UsiXMLElement;
 
 /**
@@ -13,7 +13,7 @@ public class AbstractCompoundIU extends UsiXMLElement {
         super();
     }
 
-    public AbstractCompoundIU(int id, String label, Set<? extends UsiXMLElement> elements) {
+    public AbstractCompoundIU(int id, String label, List<? extends UsiXMLElement> elements) {
         super(id, label, elements);
     }
 

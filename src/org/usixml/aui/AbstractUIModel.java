@@ -1,6 +1,6 @@
 package org.usixml.aui;
 
-import java.util.Set;
+import java.util.List;
 import org.usixml.UsiXMLElement;
 import org.usixml.UsiXMLModel;
 
@@ -14,7 +14,7 @@ public class AbstractUIModel extends UsiXMLModel {
         super();
     }
 
-    public AbstractUIModel(Set<? extends UsiXMLElement> elements) {
+    public AbstractUIModel(List<? extends UsiXMLElement> elements) {
         super(elements);
     }
 

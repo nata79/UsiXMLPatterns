@@ -1,20 +1,20 @@
 package org.usixml;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author André Barbosa
  */
 public abstract class UsiXMLModel {
-    private HashSet<UsiXMLElement> elements;
+    private ArrayList<UsiXMLElement> elements;
 
     public UsiXMLModel() {
-        this.elements = new HashSet<UsiXMLElement>();
+        this.elements = new ArrayList<UsiXMLElement>();
     }
 
-    public UsiXMLModel(Set<? extends UsiXMLElement> elements) {
+    public UsiXMLModel(List<? extends UsiXMLElement> elements) {
         this.setElements(elements);
     }
     
@@ -22,16 +22,16 @@ public abstract class UsiXMLModel {
         this.setElements(u.getElements());
     }
 
-    public Set<UsiXMLElement> getElements() {
-        Set<UsiXMLElement> tmp = new HashSet<UsiXMLElement>();
+    public List<UsiXMLElement> getElements() {
+        List<UsiXMLElement> tmp = new ArrayList<UsiXMLElement>();
         for(UsiXMLElement element : this.elements){
             tmp.add(element.clone());
         }
         return tmp;
     }
 
-    public void setElements(Set<? extends UsiXMLElement> elements) {
-        this.elements = new HashSet<UsiXMLElement>();
+    public void setElements(List<? extends UsiXMLElement> elements) {
+        this.elements = new ArrayList<UsiXMLElement>();
         for(UsiXMLElement element : elements){
             this.elements.add(element.clone());
         }

@@ -1,6 +1,6 @@
 package org.usixml.aui;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -36,47 +36,49 @@ public class AbstractUIModelTest {
     }
 
     /**
-     * Test of clone method, of class AbstractUIModel.
+     * Test building object.
      */
     @Test
-    public void testClone() {
+    public void testBuild() {
         AbstractUIModel aui = this.buildInvoiceModel();
-        
-        assertTrue(true);
+        assertSame(aui.getElements().size(), 2);
+        assertSame(aui.getElements().get(0).getElements().size(), 3);
+        assertSame(aui.getElements().get(0).getElements().get(0).getElements().size(), 2);
+        assertSame(aui.getElements().get(1).getElements().size(), 3);        
     }
     
     private AbstractUIModel buildInvoiceModel(){
         AbstractUIModel aui = new AbstractUIModel();
         
-        AbstractDataIU elem7 = new AbstractDataIU(7, "EstablishmentName", new HashSet<UsiXMLElement>());
-        AbstractDataIU elem8 = new AbstractDataIU(8, "ClientName", new HashSet<UsiXMLElement>());
+        AbstractDataIU elem7 = new AbstractDataIU(7, "EstablishmentName", new ArrayList<UsiXMLElement>());
+        AbstractDataIU elem8 = new AbstractDataIU(8, "ClientName", new ArrayList<UsiXMLElement>());
         
-        HashSet<UsiXMLElement> elem2_elems = new HashSet<UsiXMLElement>();
+        ArrayList<UsiXMLElement> elem2_elems = new ArrayList<UsiXMLElement>();
         elem2_elems.add(elem7);
         elem2_elems.add(elem8);
         AbstractCompoundIU elem2 = new AbstractCompoundIU(2, "InvoiceHeader", elem2_elems);
         
-        AbstractSelectionIU elem5 = new AbstractSelectionIU(5, "New InvoiceLine", new HashSet<UsiXMLElement>());
+        AbstractSelectionIU elem5 = new AbstractSelectionIU(5, "New InvoiceLine", new ArrayList<UsiXMLElement>());
         
-        AbstractDataIU elem9 = new AbstractDataIU(9, "Discount", new HashSet<UsiXMLElement>());
-        AbstractDataIU elem10 = new AbstractDataIU(10, "Total", new HashSet<UsiXMLElement>());
+        AbstractDataIU elem9 = new AbstractDataIU(9, "Discount", new ArrayList<UsiXMLElement>());
+        AbstractDataIU elem10 = new AbstractDataIU(10, "Total", new ArrayList<UsiXMLElement>());
         
-        HashSet<UsiXMLElement> elem6_elems = new HashSet<UsiXMLElement>();
+        ArrayList<UsiXMLElement> elem6_elems = new ArrayList<UsiXMLElement>();
         elem6_elems.add(elem9);
         elem6_elems.add(elem10);
         AbstractCompoundIU elem6 = new AbstractCompoundIU(6, "InvoiceFooter", elem6_elems);
         
-        HashSet<UsiXMLElement> elem1_elems = new HashSet<UsiXMLElement>();
+        ArrayList<UsiXMLElement> elem1_elems = new ArrayList<UsiXMLElement>();
         elem1_elems.add(elem2);
         elem1_elems.add(elem5);
         elem1_elems.add(elem6);
         AbstractCompoundIU elem1 = new AbstractCompoundIU(1, "New Invoice", elem1_elems);
         
-        AbstractDataIU elem11 = new AbstractDataIU(11, "ProductDescription", new HashSet<UsiXMLElement>());
-        AbstractDataIU elem12 = new AbstractDataIU(12, "Quantity", new HashSet<UsiXMLElement>());
-        AbstractDataIU elem13 = new AbstractDataIU(13, "Price", new HashSet<UsiXMLElement>());
+        AbstractDataIU elem11 = new AbstractDataIU(11, "ProductDescription", new ArrayList<UsiXMLElement>());
+        AbstractDataIU elem12 = new AbstractDataIU(12, "Quantity", new ArrayList<UsiXMLElement>());
+        AbstractDataIU elem13 = new AbstractDataIU(13, "Price", new ArrayList<UsiXMLElement>());
         
-        HashSet<UsiXMLElement> elem4_elems = new HashSet<UsiXMLElement>();
+        ArrayList<UsiXMLElement> elem4_elems = new ArrayList<UsiXMLElement>();
         elem4_elems.add(elem11);
         elem4_elems.add(elem12);
         elem4_elems.add(elem13);

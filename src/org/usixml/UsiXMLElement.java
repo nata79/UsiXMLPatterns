@@ -1,6 +1,6 @@
 package org.usixml;
 
-import java.util.Set;
+import java.util.List;
 
 /**
  *
@@ -14,7 +14,7 @@ public abstract class UsiXMLElement extends UsiXMLModel {
         super();
     }
 
-    public UsiXMLElement(int id, String label, Set<? extends UsiXMLElement> elements) {
+    public UsiXMLElement(int id, String label, List<? extends UsiXMLElement> elements) {
         super(elements);
         this.id = id;
         this.label = label;
