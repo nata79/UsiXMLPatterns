@@ -7,7 +7,7 @@ import org.usixml.UsiXMLElement;
  *
  * @author André Barbosa
  */
-public class AbstractSelectionIU extends UsiXMLElement {
+public class AbstractSelectionIU extends AbstractUIElement {
 
     public AbstractSelectionIU() {
         super();

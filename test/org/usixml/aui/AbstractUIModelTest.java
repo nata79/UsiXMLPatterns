@@ -8,7 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.usixml.UsiXMLElement;
-import org.usixml.UsiXMLModel;
+import org.usixml.UsiXMLElementList;
 
 /**
  *
@@ -40,14 +40,21 @@ public class AbstractUIModelTest {
      */
     @Test
     public void testBuild() {
-        AbstractUIModel aui = this.buildInvoiceModel();
+        AbstractUIModel aui = AbstractUIModelTest.buildInvoiceModel();
         assertSame(aui.getElements().size(), 2);
         assertSame(aui.getElements().get(0).getElements().size(), 3);
         assertSame(aui.getElements().get(0).getElements().get(0).getElements().size(), 2);
         assertSame(aui.getElements().get(1).getElements().size(), 3);        
     }
     
-    private AbstractUIModel buildInvoiceModel(){
+    @Test
+    public void testFromFile() {
+        AbstractUIModel aui = new AbstractUIModel();
+        aui.fromFile("/Users/albmail88/Documents/partilhaVB/invoice.aui");
+        assertTrue(aui.equals(buildInvoiceModel()));
+    }
+    
+    public static AbstractUIModel buildInvoiceModel(){
         AbstractUIModel aui = new AbstractUIModel();
         
         AbstractDataIU elem7 = new AbstractDataIU(7, "EstablishmentName", new ArrayList<UsiXMLElement>());

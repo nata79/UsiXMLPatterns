@@ -7,7 +7,7 @@ import org.usixml.UsiXMLElement;
  *
  * @author André Barbosa
  */
-public class AbstractCompoundIU extends UsiXMLElement {
+public class AbstractCompoundIU extends AbstractUIElement {
 
     public AbstractCompoundIU() {
         super();

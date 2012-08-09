@@ -1,12 +1,13 @@
 package org.usixml;
 
+import java.util.Iterator;
 import java.util.List;
 
 /**
  *
  * @author André Barbosa
  */
-public abstract class UsiXMLElement extends UsiXMLModel {
+public abstract class UsiXMLElement extends UsiXMLElementList {
     private int id;
     private String label;
 
@@ -54,7 +55,12 @@ public abstract class UsiXMLElement extends UsiXMLModel {
         }
         
         UsiXMLElement uie = (UsiXMLElement)o;
-        return uie.getId() == getId();
+        
+        if(uie.getId() != getId()){
+            return false;
+        }
+        
+        return super.equals(o);
     }
 
     @Override
