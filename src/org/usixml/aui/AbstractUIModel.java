@@ -32,44 +32,10 @@ public class AbstractUIModel extends UsiXMLModel {
 
     public AbstractUIModel(AbstractUIModel u) {
         super(u);
-    }
+    }    
     
-    public void fromFile(String path){
-        AbstractUIModel aui = new AbstractUIModel();
-        
-        InputStream is = null;
-        try {
-            
-            // Read the file
-            SAXReader reader = new SAXReader();
-            is = new FileInputStream(path);
-            Document document = reader.read(is);
-            
-            // Get the root element
-            Element root = (Element) document.getRootElement();
-            
-            this.parseChildren(this, root);
-            
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(AbstractUIModel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(AbstractUIModel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(AbstractUIModel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(AbstractUIModel.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (DocumentException ex) {
-            Logger.getLogger(AbstractUIModel.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            try {
-                is.close();
-            } catch (IOException ex) {
-                Logger.getLogger(AbstractUIModel.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }        
-    }
-    
-    private void parseChildren(UsiXMLElementList unit, Element element) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
+    @Override
+    protected void parseChildren(UsiXMLElementList unit, Element element) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
         for(Element child : element.elements()){
             UsiXMLElement uelem = this.objectFromElement(child);
             unit.addElement(uelem);
