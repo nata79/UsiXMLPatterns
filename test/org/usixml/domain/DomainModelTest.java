@@ -48,41 +48,56 @@ public class DomainModelTest {
         assertSame(domain.getElements().get(11).getElements().size(), 2);        
     }
     
+    @Test
+    public void testGetClassifiers(){
+        DomainModel domain = buildInvoiceModel();
+        assertSame(domain.getClassifiers().size(), 12);
+        assertSame(domain.getClassifiers().get(0).getName(), "Object");
+    }
+    
+    @Test
+    public void testFromFile() {
+        DomainModel domain = new DomainModel();
+        domain.fromFile("/Users/albmail88/Documents/partilhaVB/invoiceDoc.domain");
+        DomainModel domainMem = buildInvoiceModel();
+        assertTrue(domain.equals(domainMem));
+    }
+    
     public static DomainModel buildInvoiceModel(){
         
-        Class c0 = new Class(0, "Object", new ArrayList<UsiXMLElement>());
-        Class c1 = new Class(1, "String", new ArrayList<UsiXMLElement>());
-        Class c2 = new Class(2, "Number", new ArrayList<UsiXMLElement>());
-        Class c3 = new Class(3, "Integer", new ArrayList<UsiXMLElement>());
-        Class c4 = new Class(4, "Long", new ArrayList<UsiXMLElement>());
-        Class c5 = new Class(5, "Float", new ArrayList<UsiXMLElement>());
-        Class c6 = new Class(6, "Double", new ArrayList<UsiXMLElement>());
-        Class c7 = new Class(7, "DateTime", new ArrayList<UsiXMLElement>());
-        Class c8 = new Class(8, "Invoice", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c0 = new org.usixml.domain.Class(0, "Object", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c1 = new org.usixml.domain.Class(1, "String", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c2 = new org.usixml.domain.Class(2, "Number", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c3 = new org.usixml.domain.Class(3, "Integer", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c4 = new org.usixml.domain.Class(4, "Long", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c5 = new org.usixml.domain.Class(5, "Float", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c6 = new org.usixml.domain.Class(6, "Double", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c7 = new org.usixml.domain.Class(7, "DateTime", new ArrayList<UsiXMLElement>());
+        org.usixml.domain.Class c8 = new org.usixml.domain.Class(8, "Invoice", new ArrayList<UsiXMLElement>());
         
         Attribute a0 = new Attribute(VisibilitySetting.Private, c1, 0, "CompanyName", new ArrayList<UsiXMLElement>());
         Attribute a1 = new Attribute(VisibilitySetting.Private, c1, 0, "ClientName", new ArrayList<UsiXMLElement>());                
         ArrayList<UsiXMLElement> c9_atts = new ArrayList<UsiXMLElement>();
         c9_atts.add(a0);
         c9_atts.add(a1);
-        Class c9 = new Class(9, "InvoiceFooter", c9_atts);
+        org.usixml.domain.Class c9 = new org.usixml.domain.Class(9, "InvoiceFooter", c9_atts);
         
         Attribute a2 = new Attribute(VisibilitySetting.Private, c5, 0, "Discount", new ArrayList<UsiXMLElement>());
         Attribute a3 = new Attribute(VisibilitySetting.Private, c1, 0, "Total", new ArrayList<UsiXMLElement>());                
         ArrayList<UsiXMLElement> c10_atts = new ArrayList<UsiXMLElement>();
         c10_atts.add(a2);
         c10_atts.add(a3);
-        Class c10 = new Class(10, "InvoiceFooter", c10_atts);
+        org.usixml.domain.Class c10 = new org.usixml.domain.Class(10, "InvoiceFooter", c10_atts);
         
         Attribute a4 = new Attribute(VisibilitySetting.Private, c1, 0, "ProductName", new ArrayList<UsiXMLElement>());
         Attribute a5 = new Attribute(VisibilitySetting.Private, c5, 0, "Price", new ArrayList<UsiXMLElement>());                
         ArrayList<UsiXMLElement> c11_atts = new ArrayList<UsiXMLElement>();
         c11_atts.add(a4);
         c11_atts.add(a5);
-        Class c11 = new Class(10, "InvoiceLine", c11_atts);
+        org.usixml.domain.Class c11 = new org.usixml.domain.Class(11, "InvoiceLine", c11_atts);
         
         Generalization g0 = new Generalization(c1, c0, 0, null, new ArrayList<UsiXMLElement>());
-        Generalization g1 = new Generalization(c2, c2, 0, null, new ArrayList<UsiXMLElement>());
+        Generalization g1 = new Generalization(c2, c0, 0, null, new ArrayList<UsiXMLElement>());
         Generalization g2 = new Generalization(c3, c2, 0, null, new ArrayList<UsiXMLElement>());
         Generalization g3 = new Generalization(c4, c2, 0, null, new ArrayList<UsiXMLElement>());
         Generalization g4 = new Generalization(c5, c2, 0, null, new ArrayList<UsiXMLElement>());

@@ -1,6 +1,7 @@
 package org.usixml.domain;
 
 import java.util.List;
+import java.util.Objects;
 import org.usixml.UsiXMLElement;
 
 /**
@@ -132,14 +133,14 @@ public class Association extends Relationship {
         }
         
         Association a = (Association)o;
-        return this.sourceEndAggregation.equals(a.getSourceEndAggregation()) &&
-                this.sourceEndLower.equals(a.getSourceEndLower()) &&
-                this.sourceEndName.equals(a.getSourceEndName()) &&
-                this.sourceEndUpper.equals(a.getSourceEndUpper()) &&
-                this.targetEndAggregation.equals(a.getTargetEndAggregation()) &&
-                this.targetEndLower.equals(a.getTargetEndLower()) &&
-                this.targetEndName.equals(a.getTargetEndName()) &&
-                this.targetEndUpper.equals(a.getTargetEndUpper()) &&
+        return Objects.equals(this.sourceEndAggregation, a.getSourceEndAggregation()) &&
+                Objects.equals(this.sourceEndLower, a.getSourceEndLower()) &&
+                Objects.equals(this.sourceEndName, a.getSourceEndName()) &&
+                Objects.equals(this.sourceEndUpper, a.getSourceEndUpper()) &&
+                Objects.equals(this.targetEndAggregation, a.getTargetEndAggregation()) &&
+                Objects.equals(this.targetEndLower, a.getTargetEndLower()) &&
+                Objects.equals(this.targetEndName, a.getTargetEndName()) &&
+                Objects.equals(this.targetEndUpper, a.getTargetEndUpper()) &&
                 super.equals(o);
     }
         

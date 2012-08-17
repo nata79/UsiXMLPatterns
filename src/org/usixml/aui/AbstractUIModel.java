@@ -1,17 +1,8 @@
 package org.usixml.aui;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.dom4j.Document;
-import org.dom4j.DocumentException;
 import org.dom4j.Element;
-import org.dom4j.io.SAXReader;
 import org.usixml.UsiXMLElement;
 import org.usixml.UsiXMLElementList;
 import org.usixml.UsiXMLModel;
