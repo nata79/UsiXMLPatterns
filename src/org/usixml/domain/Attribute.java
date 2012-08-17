@@ -49,5 +49,21 @@ public class Attribute extends DomainElement {
     public Attribute clone() {
         return new Attribute(this);
     }
-
+    
+    @Override
+    public boolean equals(Object o) {
+        
+        if(o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        
+        if(o == this) {
+            return true;
+        }
+        
+        Attribute a = (Attribute)o;
+        return this.type.equals(a.getType()) &&
+                this.visibility.equals(a.getVisibility()) &&
+                super.equals(o);
+    }
 }

@@ -44,4 +44,19 @@ public abstract class Relationship extends DomainElement {
         this.target = target.clone();
     }
     
+    @Override
+    public boolean equals(Object o) {
+        
+        if(o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        
+        if(o == this) {
+            return true;
+        }
+        
+        Relationship r = (Relationship)o;
+        return this.target.equals(r.getTarget()) && this.source.equals(r.getSource());
+    }
+    
 }

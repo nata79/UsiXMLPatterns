@@ -119,5 +119,28 @@ public class Association extends Relationship {
     public Association clone() {
         return new Association(this);
     }
+
+    @Override
+    public boolean equals(Object o) {
+        
+        if(o == null || o.getClass() != this.getClass()) {
+            return false;
+        }
+        
+        if(o == this) {
+            return true;
+        }
+        
+        Association a = (Association)o;
+        return this.sourceEndAggregation.equals(a.getSourceEndAggregation()) &&
+                this.sourceEndLower.equals(a.getSourceEndLower()) &&
+                this.sourceEndName.equals(a.getSourceEndName()) &&
+                this.sourceEndUpper.equals(a.getSourceEndUpper()) &&
+                this.targetEndAggregation.equals(a.getTargetEndAggregation()) &&
+                this.targetEndLower.equals(a.getTargetEndLower()) &&
+                this.targetEndName.equals(a.getTargetEndName()) &&
+                this.targetEndUpper.equals(a.getTargetEndUpper()) &&
+                super.equals(o);
+    }
         
 }
