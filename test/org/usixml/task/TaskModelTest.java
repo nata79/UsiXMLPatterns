@@ -43,6 +43,49 @@ public class TaskModelTest {
         assertSame(tm.getElements().get(0).getElements().get(1).getElements().size(), 3);
     }
     
+    @Test
+    public void testGetTasks() {
+        TaskModel tm = buildCreateInvoiceModel();
+        
+        // CreateInvoiceLine
+        
+        Task t10 = new Task(10, "ShowInvoiceLineForm", new ArrayList<UsiXMLElement>());
+        Task t11 = new Task(11, "FillProductDescription", new ArrayList<UsiXMLElement>());
+        Task t12 = new Task(12, "FillQuantity", new ArrayList<UsiXMLElement>());
+        Task t13 = new Task(13, "FillPrice", new ArrayList<UsiXMLElement>());
+        Task t14 = new Task(14, "SubmitInvoiceLine", new ArrayList<UsiXMLElement>());
+        
+        TaskDecoration td4 = new TaskDecoration(t10, NatureSetting.SYSTEM, 0, null, new ArrayList<UsiXMLElement>());
+        TaskDecoration td5 = new TaskDecoration(t11, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
+        
+        TemporalRelationship tr3 = new TemporalRelationship(td4, td5, TemporalRelationshipType.ENABLING, 0, null, new ArrayList<TaskElement>());     
+        
+        TaskDecoration td6 = new TaskDecoration(t11, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
+        TaskDecoration td7 = new TaskDecoration(t12, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
+        
+        TemporalRelationship tr4 = new TemporalRelationship(td6, td7, TemporalRelationshipType.ORDERINDEPENDENCE, 0, null, new ArrayList<TaskElement>());
+        
+        TaskDecoration td8 = new TaskDecoration(t12, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
+        TaskDecoration td9 = new TaskDecoration(t13, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
+        
+        TemporalRelationship tr5 = new TemporalRelationship(td8, td9, TemporalRelationshipType.ORDERINDEPENDENCE, 0, null, new ArrayList<TaskElement>());
+        
+        TaskDecoration td10 = new TaskDecoration(t13, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
+        TaskDecoration td11 = new TaskDecoration(t14, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
+        
+        TemporalRelationship tr6 = new TemporalRelationship(td10, td11, TemporalRelationshipType.ORDERINDEPENDENCE, 0, null, new ArrayList<TaskElement>());
+        
+        ArrayList<TaskElement> t9_elems = new ArrayList<TaskElement>();
+        t9_elems.add(tr3);
+        t9_elems.add(tr4);
+        t9_elems.add(tr5);
+        t9_elems.add(tr6);
+        
+        Task t9 = new Task(9, "CreateInvoiceLine", t9_elems);
+        
+        tm.getTasks().get(9).equals(t9);
+    }
+    
     public static TaskModel buildCreateInvoiceModel(){
         
         // CreateInvoiceHeader

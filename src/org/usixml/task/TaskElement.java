@@ -1,6 +1,8 @@
 package org.usixml.task;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.usixml.UsiXMLElement;
 
 /**
@@ -27,6 +29,20 @@ public abstract class TaskElement extends UsiXMLElement {
 
     public void setName(String name){
         super.setLabel(name);
+    }
+    
+    protected void getTasks(Map<Integer, Task> tmp){        
+        
+        for(UsiXMLElement element : this.getElements()){
+            if(element instanceof Task){
+                Task t = (Task)element;
+                tmp.put(t.getId(), t);
+            }
+            if(element instanceof TaskElement){
+                TaskElement t = (TaskElement)element;
+                t.getTasks(tmp);
+            }
+        }
     }
 
 }
