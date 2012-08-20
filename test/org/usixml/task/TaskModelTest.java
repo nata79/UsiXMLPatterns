@@ -206,9 +206,9 @@ public class TaskModelTest {
         t1_elems.add(t3);
         t1_elems.add(t4);
         t1_elems.add(t17);
-        t1_elems.add(t9);
-        t1_elems.add(t10);
-        t1_elems.add(t11);
+        t1_elems.add(tr9);
+        t1_elems.add(tr10);
+        t1_elems.add(tr11);
         Task t1 = new Task(1, "CreateInvoice", t1_elems);
         
         ArrayList<TaskElement> tm_elems = new ArrayList<TaskElement>();
