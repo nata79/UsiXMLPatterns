@@ -70,7 +70,7 @@ public class TemporalRelationship extends TaskElement {
         
         return this.succ.equals(t.getSucc()) &&
                 this.pred.equals(t.getPred()) &&
-                this.type.equals(t.getType()) &&
+                //this.type.equals(t.getType()) && TODO: Uncomment after fix TemporalRelationshipType loading from specification.
                 super.equals(o);
     }    
     

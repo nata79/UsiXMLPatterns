@@ -86,6 +86,14 @@ public class TaskModelTest {
         tm.getTasks().get(9).equals(t9);
     }
     
+    @Test
+    public void testFromFile() {
+        TaskModel tm = new TaskModel();
+        tm.fromFile("/Users/albmail88/Documents/partilhaVB/invoice.task");
+        TaskModel mem = buildCreateInvoiceModel();
+        assertTrue(tm.equals(mem));
+    }
+    
     public static TaskModel buildCreateInvoiceModel(){
         
         // CreateInvoiceHeader
@@ -103,7 +111,7 @@ public class TaskModelTest {
         
         ArrayList<TaskElement> t2_elems = new ArrayList<TaskElement>();
         t2_elems.add(t5);
-        t2_elems.add(t5);
+        t2_elems.add(t6);
         t2_elems.add(t7);
         t2_elems.add(tr1);
         t2_elems.add(tr2);        
@@ -137,11 +145,16 @@ public class TaskModelTest {
         TemporalRelationship tr5 = new TemporalRelationship(td8, td9, TemporalRelationshipType.ORDERINDEPENDENCE, 0, null, new ArrayList<TaskElement>());
         
         TaskDecoration td10 = new TaskDecoration(t13, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
-        TaskDecoration td11 = new TaskDecoration(t14, NatureSetting.USER, 0, null, new ArrayList<UsiXMLElement>());
+        TaskDecoration td11 = new TaskDecoration(t14, NatureSetting.INTERACTIVE, 0, null, new ArrayList<UsiXMLElement>());
         
         TemporalRelationship tr6 = new TemporalRelationship(td10, td11, TemporalRelationshipType.ORDERINDEPENDENCE, 0, null, new ArrayList<TaskElement>());
         
         ArrayList<TaskElement> t9_elems = new ArrayList<TaskElement>();
+        t9_elems.add(t10);
+        t9_elems.add(t11);
+        t9_elems.add(t12);
+        t9_elems.add(t13);
+        t9_elems.add(t14);
         t9_elems.add(tr3);
         t9_elems.add(tr4);
         t9_elems.add(tr5);
