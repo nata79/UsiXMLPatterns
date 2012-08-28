@@ -64,6 +64,13 @@ public abstract class UsiXMLElement extends UsiXMLElementList {
     }
 
     @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 53 * hash + this.id;
+        return hash;
+    }
+
+    @Override
     public abstract UsiXMLElement clone();
     
 }

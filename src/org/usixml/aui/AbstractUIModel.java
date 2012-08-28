@@ -1,7 +1,9 @@
 package org.usixml.aui;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.dom4j.Element;
 import org.usixml.UsiXMLElement;
 import org.usixml.UsiXMLElementList;
@@ -17,13 +19,29 @@ public class AbstractUIModel extends UsiXMLModel {
         super();
     }
 
-    public AbstractUIModel(List<? extends UsiXMLElement> elements) {
+    public AbstractUIModel(List<? extends AbstractUIElement> elements) {
         super(elements);
     }
 
     public AbstractUIModel(AbstractUIModel u) {
         super(u);
-    }    
+    }
+    
+    public Map<Integer, AbstractCompoundIU> getCompounds(){
+        HashMap<Integer, AbstractCompoundIU> tmp = new HashMap<Integer, AbstractCompoundIU>();
+        
+        for(UsiXMLElement e : super.getElements()){
+            if(e instanceof AbstractCompoundIU){
+                tmp.put(e.getId(), (AbstractCompoundIU)e);
+            }
+            
+            if(e instanceof AbstractUIElement){
+                ((AbstractUIElement)e).getCompounds(tmp);
+            }
+        }
+        
+        return tmp;
+    }
     
     @Override
     protected void parseChildren(UsiXMLElementList unit, Element element) throws ClassNotFoundException, InstantiationException, IllegalAccessException{
@@ -61,7 +79,7 @@ public class AbstractUIModel extends UsiXMLModel {
     }
 
     @Override
-    public UsiXMLElementList clone() {
+    public AbstractUIModel clone() {
         return new AbstractUIModel(this);
     }
     

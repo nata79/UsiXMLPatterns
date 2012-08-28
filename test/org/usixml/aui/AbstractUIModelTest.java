@@ -54,6 +54,21 @@ public class AbstractUIModelTest {
         assertTrue(aui.equals(buildInvoiceModel()));
     }
     
+    @Test
+    public void testGetCompounds(){
+        
+        AbstractDataIU elem7 = new AbstractDataIU(7, "EstablishmentName", new ArrayList<UsiXMLElement>());
+        AbstractDataIU elem8 = new AbstractDataIU(8, "ClientName", new ArrayList<UsiXMLElement>());
+        
+        ArrayList<UsiXMLElement> elem2_elems = new ArrayList<UsiXMLElement>();
+        elem2_elems.add(elem7);
+        elem2_elems.add(elem8);
+        AbstractCompoundIU elem2 = new AbstractCompoundIU(2, "InvoiceHeader", elem2_elems);
+        
+        AbstractUIModel aui = AbstractUIModelTest.buildInvoiceModel();
+        assertTrue(aui.getCompounds().get(2).equals(elem2));
+    }
+    
     public static AbstractUIModel buildInvoiceModel(){
         AbstractUIModel aui = new AbstractUIModel();
         

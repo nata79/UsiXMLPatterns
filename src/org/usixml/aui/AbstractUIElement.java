@@ -1,6 +1,8 @@
 package org.usixml.aui;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import org.usixml.UsiXMLElement;
 
 /**
@@ -21,4 +23,15 @@ public abstract class AbstractUIElement extends UsiXMLElement {
         super(e);
     }
     
+    protected void getCompounds(Map<Integer, AbstractCompoundIU> tmp){
+        for(UsiXMLElement e : super.getElements()){
+            if(e instanceof AbstractCompoundIU){
+                tmp.put(e.getId(), (AbstractCompoundIU)e);
+            }
+            
+            if(e instanceof AbstractUIElement){
+                ((AbstractUIElement)e).getCompounds(tmp);
+            }
+        }
+    }
 }
