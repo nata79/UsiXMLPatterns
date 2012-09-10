@@ -8,6 +8,7 @@ import org.usixml.aui.AbstractUIModel;
 import org.usixml.domain.DomainModel;
 import org.usixml.task.Task;
 import org.usixml.task.TaskModel;
+import usixmlpatterns.Exceptions.IsNotAnInstantiationOfThePatternException;
 import utils.Words;
 
 /**
@@ -61,7 +62,7 @@ public class Pattern {
     }
 
     public Map<Task, AbstractCompoundIU> matchTasksAndCompound(){
-        HashMap<Task, AbstractCompoundIU> tmp = new HashMap<Task, AbstractCompoundIU>();
+        Map<Task, AbstractCompoundIU> tmp = new HashMap<Task, AbstractCompoundIU>();
         
         Map<Integer, AbstractCompoundIU> compounds = this.template.getCompounds();
         
@@ -84,6 +85,29 @@ public class Pattern {
                 }
             }
 
+        }
+        
+        return tmp;
+    }
+    
+    public Map<Task, Task> matchPatternTaskAndModelTask(TaskModel model) throws IsNotAnInstantiationOfThePatternException{
+        Map<Task, Task> tmp = new HashMap<Task, Task>();
+        
+        Map<Integer, Task> patterTasks = task.getTasks();
+        for(Task t : model.getTasks().values()){
+            if(t.getPatternId() != null){
+                Task patternTask = patterTasks.get(t.getPatternId());
+                if(patternTask != null){
+                    tmp.put(patternTask, t);
+                }
+                else{
+                    throw new IsNotAnInstantiationOfThePatternException("Pattern id: " + t.getPatternId() + " is not valid.");
+                }
+            }
+        }
+        
+        if(tmp.size() != patterTasks.size()){
+            throw new IsNotAnInstantiationOfThePatternException("One or more pattern tasks weren't redifined.");
         }
         
         return tmp;

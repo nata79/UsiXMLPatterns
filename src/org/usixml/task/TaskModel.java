@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
@@ -86,7 +88,9 @@ public class TaskModel extends UsiXMLModel {
         }
         
         if(name.equals("tasks") || name.equals("part")){            
-            return new Task(id, label, new ArrayList<UsiXMLElement>());
+            String patternIdRaw = element.attributeValue("pattern_id");
+            Integer patternId = NumberUtils.isNumber(patternIdRaw) ? Integer.valueOf(patternIdRaw) : null;
+            return new Task(id, label, new ArrayList<UsiXMLElement>(), patternId);
         }
         
         // Instantiate through type

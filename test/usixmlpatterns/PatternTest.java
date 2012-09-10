@@ -16,6 +16,7 @@ import org.usixml.aui.AbstractUIModel;
 import org.usixml.domain.DomainModel;
 import org.usixml.task.Task;
 import org.usixml.task.TaskModel;
+import usixmlpatterns.Exceptions.IsNotAnInstantiationOfThePatternException;
 
 /**
  *
@@ -64,5 +65,27 @@ public class PatternTest {
         assertSame(match.get(tasks.get(1)).getId(), 1);
         assertSame(match.get(tasks.get(2)).getId(), 2);
         assertSame(match.get(tasks.get(7)).getId(), 6);
-    }    
+    }
+    
+    /**
+     * Test of matchPatternTaskAndModelTask method, of class Pattern.
+     */
+    @Test
+    public void testMatchPatternTaskAndModelTask() throws IsNotAnInstantiationOfThePatternException{
+        AbstractUIModel aui = new AbstractUIModel();
+        aui.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/default.aui");        
+        
+        TaskModel task = new TaskModel();
+        task.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/create_document.task");
+        
+        DomainModel domain = new DomainModel();
+        domain.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/document.domain");
+        
+        Pattern documentPattern = new Pattern(domain, task, aui);
+        
+        TaskModel invoiceTask = new TaskModel();
+        invoiceTask.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/invoice/invoice.task");
+        
+        assertEquals(task.getTasks().size(), documentPattern.matchPatternTaskAndModelTask(invoiceTask).size());
+    }
 }
