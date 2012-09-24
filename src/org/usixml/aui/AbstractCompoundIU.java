@@ -22,7 +22,7 @@ public class AbstractCompoundIU extends AbstractUIElement {
     }
     
     @Override
-    public UsiXMLElement clone() {
+    public AbstractCompoundIU clone() {
         return new AbstractCompoundIU(this);
     }
 

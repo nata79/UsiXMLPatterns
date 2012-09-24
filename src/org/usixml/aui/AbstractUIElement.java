@@ -34,4 +34,7 @@ public abstract class AbstractUIElement extends UsiXMLElement {
             }
         }
     }
+
+    @Override
+    public abstract AbstractUIElement clone();
 }

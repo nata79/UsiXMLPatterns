@@ -2,6 +2,7 @@ package org.usixml;
 
 import java.util.Iterator;
 import java.util.List;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -56,7 +57,10 @@ public abstract class UsiXMLElement extends UsiXMLElementList {
         
         UsiXMLElement uie = (UsiXMLElement)o;
         
-        if(uie.getId() != getId()){
+        if(uie.getId() != getId() || !StringUtils.equals(label, uie.getLabel())){
+            if(StringUtils.equals(label, uie.getLabel())){
+                System.out.println("this is it."); 
+            }
             return false;
         }
         

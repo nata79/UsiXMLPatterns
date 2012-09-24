@@ -51,6 +51,16 @@ public class Words {
     }
     
     /**
+     * Removes the last word from a CamelCase string.
+     * @param s
+     * @return 
+     */
+    public static String removeLastWordFromCamelCaseString(String s){
+        String[] list = splitCamelCase(s);
+        return wordListToString(Arrays.copyOfRange(list, 0, list.length - 1));
+    }
+    
+    /**
      * Returns the first word of a CamelCase string.
      * @param s
      * @return 

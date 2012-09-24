@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.dom4j.Document;
@@ -18,7 +19,8 @@ import org.usixml.aui.AbstractUIModel;
  * @author André Barbosa
  */
 public abstract class UsiXMLModel extends UsiXMLElementList {
-
+    private int nextId;
+    
     public UsiXMLModel() {
         super();
     }
@@ -29,6 +31,34 @@ public abstract class UsiXMLModel extends UsiXMLElementList {
 
     public UsiXMLModel(UsiXMLModel u) {
         super(u);
+    }
+
+    public int getNextId() {
+        return ++nextId;
+    }
+
+    public void setNextId(int nextId) {
+        if(nextId > this.nextId){
+            this.nextId = nextId;
+        }
+    }
+    
+    public int getMaxId(){
+        int id = 0;
+        
+        Stack<UsiXMLElement> stack = new Stack<>();
+        stack.addAll(getElements());
+        
+        while(!stack.empty()){
+            UsiXMLElement current = stack.pop();
+            stack.addAll(current.getElements());
+            
+            if(current.getId() > id) {
+                id = current.getId();
+            }
+        }
+        
+        return id;
     }
     
     public void fromFile(String path){

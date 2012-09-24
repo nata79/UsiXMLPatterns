@@ -1,12 +1,19 @@
 package usixmlpatterns;
 
-import java.util.Map;
-import org.usixml.aui.AbstractCompoundIU;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.usixml.UsiXMLElement;
 import org.usixml.aui.AbstractUIModel;
+import org.usixml.domain.Association;
+import org.usixml.domain.Attribute;
+import org.usixml.domain.DomainElement;
 import org.usixml.domain.DomainModel;
-import org.usixml.task.Task;
+import org.usixml.domain.Generalization;
+import org.usixml.domain.VisibilitySetting;
 import org.usixml.task.TaskModel;
-import utils.Words;
+import usixmlpatterns.Exceptions.ActionNotSupportedException;
+import usixmlpatterns.Exceptions.IsNotAnInstantiationOfThePatternException;
 
 /**
  *
@@ -17,7 +24,8 @@ public class UsiXMLPatterns {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ActionNotSupportedException {
+        
         AbstractUIModel aui = new AbstractUIModel();
         aui.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/default.aui");        
         
@@ -27,6 +35,22 @@ public class UsiXMLPatterns {
         DomainModel domain = new DomainModel();
         domain.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/document.domain");
         
-        Pattern document_pattern = new Pattern(domain, task, aui);
+        Pattern documentPattern = new Pattern(domain, task, aui);
+        
+        TaskModel taskModel = new TaskModel();
+        taskModel.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/invoice/invoice.task");
+        
+        AbstractUIModel expected = new AbstractUIModel();
+        expected.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/invoice/invoice.aui");        
+        
+        boolean nice = false;
+        try {
+            AbstractUIModel generated = documentPattern.buildAbstractUIModel(taskModel);
+            nice = generated.equals(expected);
+          } catch (IsNotAnInstantiationOfThePatternException | InstantiationException | IllegalAccessException | ActionNotSupportedException ex) {
+            Logger.getLogger(UsiXMLPatterns.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+         if(nice) System.out.println("YAAAAAAY");
     }    
 }

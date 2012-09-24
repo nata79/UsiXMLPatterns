@@ -80,7 +80,7 @@ public class DomainModelTest {
         ArrayList<UsiXMLElement> c9_atts = new ArrayList<UsiXMLElement>();
         c9_atts.add(a0);
         c9_atts.add(a1);
-        org.usixml.domain.Class c9 = new org.usixml.domain.Class(9, "InvoiceFooter", c9_atts);
+        org.usixml.domain.Class c9 = new org.usixml.domain.Class(9, "InvoiceHeader", c9_atts);
         
         Attribute a2 = new Attribute(VisibilitySetting.Private, c5, 0, "Discount", new ArrayList<UsiXMLElement>());
         Attribute a3 = new Attribute(VisibilitySetting.Private, c1, 0, "Total", new ArrayList<UsiXMLElement>());                

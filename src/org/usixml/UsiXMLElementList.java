@@ -12,7 +12,7 @@ public abstract class UsiXMLElementList {
     private ArrayList<UsiXMLElement> elements;
 
     public UsiXMLElementList() {
-        this.elements = new ArrayList<UsiXMLElement>();
+        this.elements = new ArrayList<>();
     }
 
     public UsiXMLElementList(List<? extends UsiXMLElement> elements) {
@@ -24,15 +24,15 @@ public abstract class UsiXMLElementList {
     }
 
     public List<UsiXMLElement> getElements() {
-        List<UsiXMLElement> tmp = new ArrayList<UsiXMLElement>();
+        List<UsiXMLElement> tmp = new ArrayList<>();
         for(UsiXMLElement element : this.elements){
             tmp.add(element.clone());
         }
         return tmp;
     }
 
-    public void setElements(List<? extends UsiXMLElement> elements) {
-        this.elements = new ArrayList<UsiXMLElement>();
+    public final void setElements(List<? extends UsiXMLElement> elements) {
+        this.elements = new ArrayList<>();
         for(UsiXMLElement element : elements){
             this.elements.add(element.clone());
         }
