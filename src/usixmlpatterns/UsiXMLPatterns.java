@@ -1,5 +1,6 @@
 package usixmlpatterns;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -50,7 +51,10 @@ public class UsiXMLPatterns {
           } catch (IsNotAnInstantiationOfThePatternException | InstantiationException | IllegalAccessException | ActionNotSupportedException ex) {
             Logger.getLogger(UsiXMLPatterns.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         if(nice) System.out.println("YAAAAAAY");
+        try {
+            expected.toFile("/Users/albmail88/Desktop/test.xml");
+        } catch (IOException ex) {
+            Logger.getLogger(UsiXMLPatterns.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }    
 }

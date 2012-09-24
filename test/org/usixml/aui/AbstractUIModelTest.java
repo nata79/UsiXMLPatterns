@@ -1,5 +1,7 @@
 package org.usixml.aui;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -52,6 +54,23 @@ public class AbstractUIModelTest {
         AbstractUIModel aui = new AbstractUIModel();
         aui.fromFile("/Users/albmail88/Documents/partilhaVB/invoice.aui");
         assertTrue(aui.equals(buildInvoiceModel()));
+    }
+    
+    @Test
+    public void testToFile() throws IOException {
+        AbstractUIModel aui = new AbstractUIModel();
+        aui.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/invoice/invoice.aui");
+        
+        aui.toFile("./temp.aui");
+        
+        AbstractUIModel other = new AbstractUIModel();
+        other.fromFile("./temp.aui");
+        
+        assertTrue(aui.equals(other));
+        
+        // Clean
+        File f = new File("./temp.aui");
+        f.delete();
     }
     
     @Test

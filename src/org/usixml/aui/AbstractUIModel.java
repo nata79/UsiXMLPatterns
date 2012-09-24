@@ -1,10 +1,19 @@
 package org.usixml.aui;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Stack;
+import org.dom4j.Document;
 import org.dom4j.Element;
+import org.dom4j.io.SAXWriter;
+import org.dom4j.io.XMLWriter;
+import org.dom4j.tree.DefaultDocument;
+import org.dom4j.tree.DefaultElement;
 import org.usixml.UsiXMLElement;
 import org.usixml.UsiXMLElementList;
 import org.usixml.UsiXMLModel;
@@ -41,6 +50,40 @@ public class AbstractUIModel extends UsiXMLModel {
         }
         
         return tmp;
+    }
+    
+    public void toFile(String path) throws IOException{
+        Element root = new DefaultElement("org.usixml.aui:AbstractUIModel");
+        root.addAttribute("xmi:version", "2.0");
+        root.addAttribute("xmlns:xmi", "http://www.omg.org/XMI");
+        root.addAttribute("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance");
+        root.addAttribute("xmlns:org.usixml.aui", "http://org.usixml.aui/2.0");
+        
+        // Add root coumpoundUI's
+        for(UsiXMLElement element : getElements()){
+            if(element instanceof AbstractUIElement){
+                AbstractUIElement auiElement = (AbstractUIElement)element;
+                Element xmlElement = new DefaultElement("compoundIUs");
+                xmlElement.addAttribute("id", new Integer(auiElement.getId()).toString());
+                xmlElement.addAttribute("label", auiElement.getLabel());
+                
+                for(UsiXMLElement child : auiElement.getElements()){
+                    if(child instanceof AbstractUIElement){
+                        AbstractUIElement childAuiElement = (AbstractUIElement)child;
+                        childAuiElement.toFileHelper(xmlElement);
+                    }
+                }
+                
+                root.add(xmlElement);
+            }
+        }
+        
+        
+        Document document = new DefaultDocument(root);
+        
+        XMLWriter writer = new XMLWriter(new FileWriter(path));
+        writer.write( document );
+        writer.close();
     }
     
     @Override
