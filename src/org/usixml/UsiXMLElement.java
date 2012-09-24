@@ -58,9 +58,6 @@ public abstract class UsiXMLElement extends UsiXMLElementList {
         UsiXMLElement uie = (UsiXMLElement)o;
         
         if(uie.getId() != getId() || !StringUtils.equals(label, uie.getLabel())){
-            if(StringUtils.equals(label, uie.getLabel())){
-                System.out.println("this is it."); 
-            }
             return false;
         }
         
