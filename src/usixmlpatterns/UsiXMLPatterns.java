@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import org.usixml.UsiXMLElement;
 import org.usixml.aui.AbstractUIModel;
 import org.usixml.domain.Association;
@@ -27,34 +28,11 @@ public class UsiXMLPatterns {
      */
     public static void main(String[] args) throws ActionNotSupportedException {
         
-        AbstractUIModel aui = new AbstractUIModel();
-        aui.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/default.aui");        
-        
-        TaskModel task = new TaskModel();
-        task.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/create_document.task");
-        
-        DomainModel domain = new DomainModel();
-        domain.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/document.domain");
-        
-        Pattern documentPattern = new Pattern(domain, task, aui);
-        
-        TaskModel taskModel = new TaskModel();
-        taskModel.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/invoice/invoice.task");
-        
-        AbstractUIModel expected = new AbstractUIModel();
-        expected.fromFile("/Users/albmail88/Documents/partilhaVB/document_pattern/invoice/invoice.aui");        
-        
-        boolean nice = false;
-        try {
-            AbstractUIModel generated = documentPattern.buildAbstractUIModel(taskModel);
-            nice = generated.equals(expected);
-          } catch (IsNotAnInstantiationOfThePatternException | InstantiationException | IllegalAccessException | ActionNotSupportedException ex) {
-            Logger.getLogger(UsiXMLPatterns.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-            expected.toFile("/Users/albmail88/Desktop/test.xml");
-        } catch (IOException ex) {
-            Logger.getLogger(UsiXMLPatterns.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        JFrame frame = new mainWindow();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  
+        //Display the window.
+        frame.pack();
+        frame.setVisible(true);
     }    
 }
